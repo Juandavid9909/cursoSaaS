@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>SaaS</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="section container mt-4">
+        <div class="columns">
+            <div class="column">
+                <h3 class="is-size-3">Comidas</h3>
+                <a href="#" class="my-4 d-none">Agregar</a>
+                <table class="table mt-3">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Url</th>
+                            <th scope="col">Creator</th>
+                            <th scope="col">Created_t</th>
+                            <!--<th>Editar</th>-->
+                            <th>Eliminar</th>
+                    </thead>
+                    <tbody>
+                        {% for comida in comidas %}
+                        <tr>
+                            <td>{{comida[1]}}</td>
+                            <td>{{comida[2]}}</td>
+                            <td>{{comida[3]}}</td>
+                            <!--<td>
+                                {# Pasar el id (lo que hay en juego[0] #}
+                                <a href="#" class="button is-info">Editar</a>
+                            </td>-->
+                            <td>
+                                <form action="http://192.168.194.22:5000/eliminar_comida" method="POST">
+                                    <input type="hidden" name="code" value="{{comida[0]}}">
+                                    <button class="button is-danger" type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
